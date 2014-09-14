@@ -1,8 +1,5 @@
 <?php
 
-require './DocumentDb/Interface/Document_Db.php';
-require './DocumentDb/Mongodb/Document_Db.php';
-
 class Document_Db{
     private $_document_db = null;
 
@@ -37,11 +34,3 @@ class Document_Db{
         return $this->_document_db->remove($where);
     }
 }
-
-$lib = new Document_Db(new Document_Db_Mongodb());
-$lib->connect();
-// $lib->create('12345');
-// $lib->close();
-// $lib->push('9876', 'col4', 1999);
-//
-$lib->remove([]);

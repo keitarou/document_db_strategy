@@ -13,6 +13,8 @@ interface Document_Db_Interface{
 
     public function remove($where);
 
+    public function count($where);
+
 }
 
 

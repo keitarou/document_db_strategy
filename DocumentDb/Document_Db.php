@@ -33,4 +33,8 @@ class Document_Db{
     public function remove($where){
         return $this->_document_db->remove($where);
     }
+
+    public function count($where){
+        return $this->_document_db->count($where);
+    }
 }

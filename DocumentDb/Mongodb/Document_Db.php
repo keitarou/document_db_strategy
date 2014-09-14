@@ -80,5 +80,9 @@ class Document_Db_Mongodb implements Document_Db_Interface{
         return $this->_collection->remove($where);
     }
 
+    public function count($where=[]){
+        return $this->_collection->find($where)->count();
+    }
+
 }
 

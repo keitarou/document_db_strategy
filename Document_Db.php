@@ -3,7 +3,7 @@
 require './DocumentDb/Interface/Document_Db.php';
 require './DocumentDb/Mongodb/Document_Db.php';
 
-class Lib_Document_Db{
+class Document_Db{
     private $_document_db = null;
 
     public function __construct($document_db){
@@ -34,7 +34,7 @@ class Lib_Document_Db{
     }
 }
 
-$lib = new Lib_Document_Db(new Document_Db_Mongodb());
+$lib = new Document_Db(new Document_Db_Mongodb());
 $lib->connect();
 // $lib->create('12345');
 // $lib->close();

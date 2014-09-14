@@ -32,10 +32,16 @@ class Document_Db{
     public function push($id, $key, $value){
         return $this->_document_db->push($id, $key, $value);
     }
+
+    public function remove($where){
+        return $this->_document_db->remove($where);
+    }
 }
 
 $lib = new Document_Db(new Document_Db_Mongodb());
 $lib->connect();
 // $lib->create('12345');
 // $lib->close();
-$lib->push('9876', 'col4', 1999);
+// $lib->push('9876', 'col4', 1999);
+//
+$lib->remove([]);

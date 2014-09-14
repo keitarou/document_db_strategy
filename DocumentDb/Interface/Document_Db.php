@@ -11,6 +11,8 @@ interface Document_Db_Interface{
 
     public function push($id, $key, $value);
 
+    public function remove($where);
+
 }
 
 

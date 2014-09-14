@@ -5,23 +5,23 @@ class Document_Db_Mongodb implements Document_Db_Interface{
     private $_db         = null;
     private $_collection = null;
 
-    public function get_host(){
+    private function _get_host(){
         return '127.0.0.1';
     }
 
-    public function get_port(){
+    private function _get_port(){
         return '27017';
     }
 
-    public function get_dbname(){
+    private function _get_dbname(){
         return 'hoge';
     }
 
-    public function get_collectionname(){
+    private function _get_collectionname(){
         return 'piyo';
     }
 
-    public function get_scheme(){
+    private function _get_scheme(){
         return [
             'col1' => null,
             'col2' => [],
@@ -31,9 +31,9 @@ class Document_Db_Mongodb implements Document_Db_Interface{
     }
 
     public function connect(){
-        $this->_connection  = new Mongo($this->get_host(). ":". $this->get_port());
-        $this->_db          = $this->_connection->selectDB($this->get_dbname());
-        $this->_collection  = $this->_db->selectCollection($this->get_collectionname());
+        $this->_connection  = new Mongo($this->_get_host(). ":". $this->_get_port());
+        $this->_db          = $this->_connection->selectDB($this->_get_dbname());
+        $this->_collection  = $this->_db->selectCollection($this->_get_collectionname());
     }
 
     public function close(){
@@ -60,9 +60,8 @@ class Document_Db_Mongodb implements Document_Db_Interface{
     }
 
     public function push($id, $key, $value){
-        if(!array_key_exists($key, $this->get_scheme())){
+        if(!array_key_exists($key, $this->_get_scheme())){
             throw new Exception('not exist key in scheme');
-            return false;
         }
 
         $where = ['col1' => $id];
@@ -71,6 +70,14 @@ class Document_Db_Mongodb implements Document_Db_Interface{
         ];
 
         return $this->_collection->update($where, $push);
+    }
+
+    public function remove($where=false){
+        if($where === false){
+            throw new Exception('not set $where');
+        }
+
+        return $this->_collection->remove($where);
     }
 
 }
